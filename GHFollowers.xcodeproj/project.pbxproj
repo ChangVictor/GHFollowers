@@ -20,6 +20,7 @@
 		950B3F1B2B56F42D00E9BD89 /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950B3F1A2B56F42D00E9BD89 /* GFTitleLabel.swift */; };
 		950B3F1D2B56F5EC00E9BD89 /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950B3F1C2B56F5EC00E9BD89 /* GFBodyLabel.swift */; };
 		950B3F1F2B56F8F800E9BD89 /* GFAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950B3F1E2B56F8F800E9BD89 /* GFAlertViewController.swift */; };
+		95DE16672B6BE61F00B02E48 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DE16662B6BE61F00B02E48 /* UIViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		950B3F1A2B56F42D00E9BD89 /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		950B3F1C2B56F5EC00E9BD89 /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		950B3F1E2B56F8F800E9BD89 /* GFAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertViewController.swift; sourceTree = "<group>"; };
+		95DE16662B6BE61F00B02E48 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		950B3F132B548A7200E9BD89 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				95DE16662B6BE61F00B02E48 /* UIViewController+Extensions.swift */,
 				950B3F112B54874100E9BD89 /* Extensions.swift */,
 				950B3F142B548A8900E9BD89 /* GFButton.swift */,
 				950B3F162B548EF700E9BD89 /* GFTextField.swift */,
@@ -170,6 +173,7 @@
 				950B3F0E2B54835A00E9BD89 /* SearchViewController.swift in Sources */,
 				950B3F152B548A8A00E9BD89 /* GFButton.swift in Sources */,
 				950B3EFA2B54015800E9BD89 /* AppDelegate.swift in Sources */,
+				95DE16672B6BE61F00B02E48 /* UIViewController+Extensions.swift in Sources */,
 				950B3F192B5584E000E9BD89 /* FollowersListViewController.swift in Sources */,
 				950B3F1F2B56F8F800E9BD89 /* GFAlertViewController.swift in Sources */,
 				950B3F102B54838200E9BD89 /* FavoritesViewController.swift in Sources */,
