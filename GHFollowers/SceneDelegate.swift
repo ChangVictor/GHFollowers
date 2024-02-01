@@ -16,8 +16,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        
+        // MARK: - Set the windows
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        window?.rootViewController = createTabBar()
+        window?.makeKeyAndVisible()
+        
+        configNavigationBar()
     }
+    
+    func createSearchNavController() -> UINavigationController {
+        let searchViewController = SearchViewController()
+        searchViewController.title = "Search"
+        searchViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        return UINavigationController(rootViewController: searchViewController)
+    }
+    
+    func createFavoritesNavController() -> UINavigationController {
+        let favoriteViewController = FavoritesViewController()
+        favoriteViewController.title = "Favorites"
+        favoriteViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        return UINavigationController(rootViewController: favoriteViewController)
+    }
+    
+    func createTabBar() -> UITabBarController {
+        let tabBar = UITabBarController()
+        tabBar.tabBar.tintColor = .systemGreen
+
+        tabBar.viewControllers = [createSearchNavController(), createFavoritesNavController()]
+        return tabBar
+    }
+    
+    func configNavigationBar() {
+        UINavigationBar.appearance().tintColor = .systemGreen
+    }
+    
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
