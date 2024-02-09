@@ -27,6 +27,7 @@
 		95DE16742B6D3F7B00B02E48 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DE16732B6D3F7B00B02E48 /* ErrorMessage.swift */; };
 		95DE16772B6ED00700B02E48 /* FollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DE16762B6ED00700B02E48 /* FollowerCell.swift */; };
 		95DE16792B6ED07E00B02E48 /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DE16782B6ED07E00B02E48 /* GFAvatarImageView.swift */; };
+		95DE167B2B766D3E00B02E48 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DE167A2B766D3E00B02E48 /* UIHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		95DE16732B6D3F7B00B02E48 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		95DE16762B6ED00700B02E48 /* FollowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCell.swift; sourceTree = "<group>"; };
 		95DE16782B6ED07E00B02E48 /* GFAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAvatarImageView.swift; sourceTree = "<group>"; };
+		95DE167A2B766D3E00B02E48 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				95DE16732B6D3F7B00B02E48 /* ErrorMessage.swift */,
+				95DE167A2B766D3E00B02E48 /* UIHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				950B3F1B2B56F42D00E9BD89 /* GFTitleLabel.swift in Sources */,
 				950B3EFC2B54015800E9BD89 /* SceneDelegate.swift in Sources */,
 				95DE16742B6D3F7B00B02E48 /* ErrorMessage.swift in Sources */,
+				95DE167B2B766D3E00B02E48 /* UIHelper.swift in Sources */,
 				95DE16702B6C49B900B02E48 /* NetworkManager.swift in Sources */,
 				950B3F172B548EF700E9BD89 /* GFTextField.swift in Sources */,
 				950B3F1D2B56F5EC00E9BD89 /* GFBodyLabel.swift in Sources */,
