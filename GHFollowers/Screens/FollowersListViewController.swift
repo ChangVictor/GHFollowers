@@ -40,12 +40,23 @@ class FollowersListViewController: UIViewController {
     }
     
     private func getFollowers(username: String, page: Int) {
+        showLoadingView()
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
+            
             guard let self = self else { return }
+            self.dismissLoadingView()
             switch result {
             case .success(let followers):
+                
                 if followers.count < 100 { self.hasMoreFollowers = false }
                 self.followers.append(contentsOf: followers)
+                
+                if self.followers.isEmpty {
+                    let message = "This user doesn't have any followers. Go follow them 😀."
+                    DispatchQueue.main.async {
+                        self.showEmptyStateView(with: message, in: self.view)
+                    }
+                }
                 self.updateData()
             case .failure(let error):
                 self.presentGHAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Ok")
@@ -87,7 +98,7 @@ extension FollowersListViewController: UICollectionViewDelegate {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.size.height
         
-        if offsetY > (contentHeight - height) / 2 {
+        if offsetY > contentHeight - height {
             guard hasMoreFollowers else { return }
             page += 1
             self.getFollowers(username: username, page: page)
