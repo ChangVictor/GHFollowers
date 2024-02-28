@@ -121,7 +121,7 @@ extension FollowersListViewController: UICollectionViewDelegate {
         let activeArray = isSearching ? filteredFollowers : followers
         let follower = activeArray[indexPath.item]
         
-        let destinationViewController = UserInfoVIewController()
+        let destinationViewController = UserInfoViewController()
         destinationViewController.username = follower.login
         let navigationController = UINavigationController(rootViewController: destinationViewController)
         present(navigationController, animated: true)

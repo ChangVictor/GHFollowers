@@ -1,5 +1,5 @@
 //
-//  GFEmprtStateView.swift
+//  GFEmptyStateView.swift
 //  GHFollowers
 //
 //  Created by Victor Chang on 13/02/2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GFEmprtStateView: UIView {
+class GFEmptyStateView: UIView {
     
     let messageLabel = GFTitleLabel(textAlignment: .center, fontSize: 28)
     let logoImageView = UIImageView()
