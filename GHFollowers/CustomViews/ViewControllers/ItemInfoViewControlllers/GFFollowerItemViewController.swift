@@ -20,4 +20,13 @@ class GFFollowersItemViewController: GFItemInfoViewController {
         actionButton.set(backgroundColor: .systemGreen, title: "Get Followers")
     }
 
+    override func actionButtonTapped() {
+        guard user.followers != 0 else {
+            presentGHAlertOnMainThread(title: "No followers", message: "This user has no followers", buttonTitle: "Done")
+            return
+        }
+        
+        delegate.didTapGetFollowers(for: user)
+        dismiss(animated: true)
+    }
 }

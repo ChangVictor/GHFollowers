@@ -6,6 +6,12 @@
 //
 
 import UIKit
+import SafariServices
+
+protocol UserInfoDelegate: AnyObject {
+    func didTapGitHubProfile(for user: User)
+    func didTapGetFollowers(for user: User)
+}
 
 class UserInfoViewController: UIViewController {
     
@@ -15,6 +21,7 @@ class UserInfoViewController: UIViewController {
     let dateLabel = GFBodyLabel(textAlignment: .center)
     var itemViews: [UIView] = []
     var username: String!
+    weak var delegate: FollowerListViewDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,17 +42,25 @@ class UserInfoViewController: UIViewController {
             
             switch result {
             case .success(let user):
-                DispatchQueue.main.async {
-                    self.add(childViewController: GFUserInfoHeaderViewController(user: user), to: self.headerView)
-                    self.add(childViewController: GFRepoItemViewController(user: user), to: self.itemViewOne)
-                    self.add(childViewController: GFFollowersItemViewController(user: user), to: self.itemViewTwo)
-                    self.dateLabel.text = "(Github since \(user.createdAt.convertToDisplayFormat())"
-                }
+                DispatchQueue.main.async { self.configUIElements(for: user) }
             case .failure(let error):
                 self.presentGHAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
                 break
             }
         }
+    }
+    
+    func configUIElements(for user: User) {
+        let repoItemView = GFRepoItemViewController(user: user)
+        repoItemView.delegate = self
+        
+        let followerItemView = GFFollowersItemViewController(user: user)
+        followerItemView.delegate = self
+        
+        self.add(childViewController: repoItemView, to: self.itemViewOne)
+        self.add(childViewController: followerItemView, to: self.itemViewTwo)
+        self.add(childViewController: GFUserInfoHeaderViewController(user: user), to: self.headerView)
+        self.dateLabel.text = "(Github since \(user.createdAt.convertToDisplayFormat())"
     }
     
     func layoutUI() {
@@ -89,4 +104,24 @@ class UserInfoViewController: UIViewController {
     @objc func dismissViewController() {
         dismiss(animated: true)
     }
+}
+
+extension UserInfoViewController: UserInfoDelegate {
+    
+    func didTapGitHubProfile(for user: User) {
+        
+        guard let url = URL(string: user.htmlUrl) else {
+            presentGHAlertOnMainThread(title: "Invalid URL", message: "The url attached to his user is invalid", buttonTitle: "OK")
+            return
+        }
+        presentSafariView(with: url)
+
+    }
+    
+    func didTapGetFollowers(for user: User) {
+        // dismiss view
+        // tell follower list screen the new user
+        delegate.didRequestFollowers(for: user.login)
+    }
+
 }
