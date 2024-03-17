@@ -50,7 +50,29 @@ class FollowersListViewController: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        print("add button tapped")
+        
+        showLoadingView()
+        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
+            switch result {
+            case .success(let user):
+                let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
+                
+                PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
+                    guard let self = self else { return }
+                    guard let error = error else {
+                        self.presentGHAlertOnMainThread(title: "Sucess!", message: "You have successfully added user to Favorites", buttonTitle: "Done")
+                        return
+                    }
+                    self.presentGHAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
+                }
+                
+            case .failure(let error):
+                self.presentGHAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
+            }
+        }
     }
     
     func configSearchController() {
