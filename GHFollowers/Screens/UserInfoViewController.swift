@@ -32,7 +32,7 @@ class UserInfoViewController: GFDataLoadingViewController {
         layoutUI()
         getUserInfo()
     }
-    
+        
     func configViewController() {
         view.backgroundColor = .systemBackground
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissViewController))
