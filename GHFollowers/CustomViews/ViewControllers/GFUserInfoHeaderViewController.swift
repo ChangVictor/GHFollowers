@@ -18,13 +18,6 @@ class GFUserInfoHeaderViewController: UIViewController {
     
     var user: User!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addSubviews()
-        configUIElements()
-        layourUI()
-    }
-    
     init(user: User) {
         super.init(nibName: nil, bundle: nil)
         self.user = user
@@ -34,8 +27,15 @@ class GFUserInfoHeaderViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addSubviews()
+        layourUI()
+        configUIElements()
+    }
+    
     func configUIElements() {
-        downloadAvatarImage()
+        avatarImageView.downloadImage(from: user.avatarUrl)
         usernameLabel.text = user.login
         nameLabel.text = user.name ?? "N/A"
         locationLabel.text = user.location ?? "N/A"
@@ -44,13 +44,6 @@ class GFUserInfoHeaderViewController: UIViewController {
         
         locationImageView.image = SFSymbols.location
         locationImageView.tintColor = .secondaryLabel
-    }
-    
-    func downloadAvatarImage() {
-        NetworkManager.shared.downloadImage(from: user.avatarUrl) { [weak self] image in
-            guard let self = self else { return }
-            DispatchQueue.main.async { self.avatarImageView.image = image}
-        }
     }
     
     func addSubviews() {

@@ -10,7 +10,7 @@ import UIKit
 extension UIView {
     
     func addSubviews(_ views: UIView...) {
-        for view in views { addSubviews(view) }
+        for view in views { addSubview(view) }
     }
     
     func pinToEdges(of superView: UIView) {

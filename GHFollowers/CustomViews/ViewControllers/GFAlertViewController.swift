@@ -34,8 +34,9 @@ class GFAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        view.addSubview(containerView)
+        containerView.addSubviews(titleLabel, actionButton, messageLabel)
         
-        view.addSubviews(containerView, titleLabel, actionButton, messageLabel)
         configContainerView()
         configTitleLabel()
         configActionButton()
@@ -53,6 +54,7 @@ class GFAlertViewController: UIViewController {
     
     func configTitleLabel() {
         titleLabel.text = alertTitle ?? "Something went wrong"
+        
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),

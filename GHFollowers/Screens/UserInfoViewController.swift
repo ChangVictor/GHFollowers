@@ -28,6 +28,7 @@ class UserInfoViewController: GFDataLoadingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configViewController()
+        configScrollView()
         layoutUI()
         getUserInfo()
     }
@@ -68,7 +69,7 @@ class UserInfoViewController: GFDataLoadingViewController {
         self.add(childViewController: GFRepoItemViewController(user: user, delegate: self), to: self.itemViewOne)
         self.add(childViewController: GFFollowersItemViewController(user: user, delegate: self), to: self.itemViewTwo)
         self.add(childViewController: GFUserInfoHeaderViewController(user: user), to: self.headerView)
-        self.dateLabel.text = "(Github since \(user.createdAt.convertToMonthYearFormat())"
+        self.dateLabel.text = "(Github since \(user.createdAt.convertToMonthYearFormat()))"
     }
     
     func layoutUI() {
