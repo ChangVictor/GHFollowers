@@ -18,12 +18,19 @@ extension UIViewController {
         present(safariViewController, animated: true)
     }
     
-    func presentGHAlertOnMainThread(title: String, message: String, buttonTitle: String) {
-        DispatchQueue.main.async {
-            let alertViewController = GFAlertViewController(title: title, message: message, buttonTitle: buttonTitle)
-            alertViewController.modalPresentationStyle = .overFullScreen
-            alertViewController.modalTransitionStyle = .crossDissolve
-            self.present(alertViewController, animated: true)
-        }
+    func presentGHAlert(title: String, message: String, buttonTitle: String) {
+        let alertViewController = GFAlertViewController(title: title, message: message, buttonTitle: buttonTitle)
+        alertViewController.modalPresentationStyle = .overFullScreen
+        alertViewController.modalTransitionStyle = .crossDissolve
+        present(alertViewController, animated: true)
+    }
+    
+    func presentDefaultError() {
+        let alertViewController = GFAlertViewController(title: "Something went wrong",
+                                                        message: "Unable to compete task",
+                                                        buttonTitle: "OK")
+        alertViewController.modalPresentationStyle = .overFullScreen
+        alertViewController.modalTransitionStyle = .crossDissolve
+        present(alertViewController, animated: true)
     }
 }

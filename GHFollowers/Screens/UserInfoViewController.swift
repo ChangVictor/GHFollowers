@@ -52,17 +52,30 @@ class UserInfoViewController: GFDataLoadingViewController {
     }
     
     func getUserInfo() {
-        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let user):
-                DispatchQueue.main.async { self.configUIElements(for: user) }
-            case .failure(let error):
-                self.presentGHAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-                break
+        Task {
+            do {
+                let user = try await NetworkManager.shared.getUserInfo(for: username)
+                configUIElements(for: user)
+            } catch {
+                if let gfError = error as? GFError {
+                    presentGHAlert(title: "Something went wrong", message: gfError.rawValue, buttonTitle: "OK")
+                } else {
+                    presentDefaultError()
+                }
             }
         }
+        // MARK: - fetching userInfo with closure
+//        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+//            guard let self = self else { return }
+//
+//            switch result {
+//            case .success(let user):
+//                DispatchQueue.main.async { self.configUIElements(for: user) }
+//            case .failure(let error):
+//                self.presentGHAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+//                break
+//            }
+//        }
     }
     
     func configUIElements(for user: User) {
@@ -118,7 +131,7 @@ extension UserInfoViewController: GFRepoItemDelegate {
     
     func didTapGitHubProfile(for user: User) {
         guard let url = URL(string: user.htmlUrl) else {
-            presentGHAlertOnMainThread(title: "Invalid URL", message: "The url attached to his user is invalid", buttonTitle: "OK")
+            presentGHAlert(title: "Invalid URL", message: "The url attached to his user is invalid", buttonTitle: "OK")
             return
         }
         presentSafariView(with: url)

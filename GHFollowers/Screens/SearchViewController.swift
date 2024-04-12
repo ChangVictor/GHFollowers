@@ -41,7 +41,7 @@ class SearchViewController: UIViewController {
     @objc
     func pushFollowersViewController() {
         guard isUsernmaeEntered else {
-            presentGHAlertOnMainThread(title: "Empty Username", message: "Please enter a username. We need to know who to look for", buttonTitle: "Ok")
+            presentGHAlert(title: "Empty Username", message: "Please enter a username. We need to know who to look for", buttonTitle: "Ok")
             return
         }
         
